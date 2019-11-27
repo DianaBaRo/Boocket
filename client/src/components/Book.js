@@ -2,24 +2,24 @@ import React from 'react';
 import '../css/Book.css';
 
 const Book = (props) => {
-    console.log(props)
-;    const book = props.location.state;
+    //Get its props from Link react-router, setted in SearchableBookListContainer and in WishListContainer
+    console.log(props.location.data);
+
+    const book = props.location.data;
 
     if (book) {
 
-        let bookTitle = book.volumeInfo.title;
-        let bookImage = book.volumeInfo.imageLinks.thumbnail;
-        let bookAuthor = book.volumeInfo.authors.join('');
-        let bookInfo = book.volumeInfo.infoLink;
-        let bookDescription = book.volumeInfo.description;
-
         return(
             <div className="BookListContainer">
-                <h1>{ bookTitle }</h1>
-                <img src={bookImage} alt={bookTitle} />
-                <p>by { bookAuthor }</p>
-                <p><a href={ bookInfo }>More Info</a></p>
-                <p>{ bookDescription }</p>
+                <h1>{ book.title }</h1>
+                <img
+                    src={ book.image === "" || book.image === null ? '/download.jpeg' : book.image }
+                    alt={ book.title }
+                />
+                <p>by { book.author }</p>
+                {/* Condition. if book.info contains http display link otherwise plain text*/}
+                { book.info ? <p>{ book.info }</p> : <p>No more information available</p> }
+                <p>{ book.description }</p>
             </div>
         )
     } else {
