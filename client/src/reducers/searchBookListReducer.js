@@ -1,10 +1,7 @@
 function searchBookListReducer ( state = [], action) {
-    switch (action.type) {
-        case 'LOADING_SEARCH_BOOK_LIST':
-            return state
-            
+    switch (action.type) {    
         case 'ADD_SEARCH_BOOK_LIST':
-            return action.books.items
+            return action.books.items;
 
         default:
             return state;
