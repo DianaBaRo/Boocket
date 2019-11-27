@@ -9,7 +9,7 @@ class CreateBook extends PureComponent {
         title: '',
         author: '',
         image: '',
-        moreInfo: ''
+        info: ''
     };
 
     //instead of writing handleChange() as a class method, I declare it as a class property and assign an arrow function to it.
@@ -26,7 +26,7 @@ class CreateBook extends PureComponent {
         this.setState({
             title: '',
             author: '',
-            moreInfo: ''
+            info: ''
         })
     }
     
@@ -47,7 +47,7 @@ class CreateBook extends PureComponent {
                     </p>
                     <p>
                         <label>More Info</label>
-                        <textarea type='text' name='moreInfo' onChange={ this.handleChange } value={this.state.moreInfo} />
+                        <textarea type='text' name='info' onChange={ this.handleChange } value={this.state.info} />
                     </p>
                     <input type='submit' value='Add to wishlist'/>
                 </form>
