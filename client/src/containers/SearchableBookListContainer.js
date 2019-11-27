@@ -3,7 +3,7 @@ import '../css/BookListContainer.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchSearchBookList } from '../actions/searchBookList';
-import { addBook } from '../actions/wishList';
+import { addBookFromSearch } from '../actions/wishList';
 
 class SearchableBookListContainer extends PureComponent {
 
@@ -24,20 +24,29 @@ class SearchableBookListContainer extends PureComponent {
     };
 
     handleLoading = () => {
+      
         const renderBooks = this.props.books.map(book => (
+           
             <span>
                 <p>
                     <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+                    {/*Passing props with Link react-router to `/search/books/:id` that is connected to Book component*/}
                     <Link to={{
                         pathname: `/search/books/${book.volumeInfo.title}`,
-                        state: book
+                        data: {
+                            title: book.volumeInfo.title,
+                            author: book.volumeInfo.authors.join(''),
+                            info: book.volumeInfo.infoLink,
+                            image: book.volumeInfo.imageLinks.thumbnail,
+                            description: book.volumeInfo.description
+                        }
+
                     }} ><h3>{ book.volumeInfo.title }</h3></Link>
                 
-                    <button onClick={ () => this.handleAddBook({ author: book.volumeInfo.authors.concat(' '), title: book.volumeInfo.title , image: book.volumeInfo.imageLinks.thumbnail, moreInfo: book.volumeInfo.infoLink }) }>Add Book to Wishlist</button>
+                    <button onClick={ () => this.handleAddBook(book) }>Add Book to Wishlist</button>
                 </p> 
             </span>
         ));
-
         return renderBooks;
     };
     
@@ -69,7 +78,7 @@ class SearchableBookListContainer extends PureComponent {
 function mapDispatchToProps(dispatch) {
     return { 
         fetchSearchBookList: (query) => dispatch(fetchSearchBookList(query)),
-        addBook: book => dispatch(addBook(book))
+        addBook: book => dispatch(addBookFromSearch(book))
     }
 };
 
