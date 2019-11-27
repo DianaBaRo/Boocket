@@ -1,7 +1,13 @@
 export function fetchSearchBookList (query) {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&orderBy=newest&maxResults=40`
     return ( dispatch ) => {
-        dispatch({ type: 'LOADING_SEARCH_BOOK_LIST' });
-        fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
         .then( response => {
             if ( !response.ok && query.length === 0 ) { throw response }
             return response.json()  //we only get here if there is no error
@@ -15,9 +21,9 @@ export function fetchSearchBookList (query) {
             }
         })
         .catch( err => {
-            err.text().then(errorMessage => {
-                alert(JSON.parse(errorMessage).error.message)
-            })
+            console.log(err);
+            alert("Sorry. There was an error. Please try again")
+            window.location.reload();
         })
     };
 };
