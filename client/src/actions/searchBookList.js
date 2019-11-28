@@ -17,13 +17,11 @@ export function fetchSearchBookList (query) {
             if (books.error) {
                 alert("There was an error")
             } else {
-                dispatch({ type: 'ADD_SEARCH_BOOK_LIST', books })
+                dispatch({ type: 'SET_SEARCH_BOOK_LIST', books })
             }
         })
         .catch( err => {
-            console.log(err);
-            alert("Sorry. There was an error. Please try again")
-            window.location.reload();
+            console.log(err)
         })
     };
 };

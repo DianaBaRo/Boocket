@@ -8,16 +8,14 @@ import { Link } from 'react-router-dom';
 
 class WishListContainer extends PureComponent {
 
-    handleDeleteBook = (book) => {
-        console.log(book)
-        this.props.deleteBook(book);
-        window.location.reload();
-    };
-    
     componentDidMount() {
         this.props.getMyWishList();
     };
 
+    handleDeleteBook = (book) => {
+        console.log(book)
+        this.props.deleteBook(book);
+    };
 
     handleLoading = () => {
         const books = this.props.books.length > 0 ? 
@@ -32,10 +30,9 @@ class WishListContainer extends PureComponent {
                     {/*Passing props with Link react-router to `/wishlist/books/:id` that is connected to Book component*/}
                     <Link to={{
                         pathname: `/wishlist/books/${book.title}`,
-                        data: book
+                        state: book
                     }} ><h3>{ book.title }</h3></Link>
                     <p>by { book.author }</p>
-                    <p>More Info: { book.info } </p>
                     
                     <p> <button onClick={ () =>  this.handleDeleteBook( book.id )}>Click here to delete from list</button></p>
                     
