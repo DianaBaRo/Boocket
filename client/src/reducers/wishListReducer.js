@@ -11,7 +11,7 @@ function wishListReducer ( state = [], action) {
             return state.filter( book => book.id !== action.book );
 
         case 'SET_MY_WISHLIST':
-            return state.concat(action.books);
+            return action.books;
 
         default:
             return state;
