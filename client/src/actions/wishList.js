@@ -1,21 +1,15 @@
-//Tengo que crear persistBookFromSearchToDatabase y addBookFromSearch
+//Adding a book to wishlist selected from search list
 
 export const addBookFromSearch = book => {
     persistBookFromSearchToDatabase(book);
     return dispatch => {
         dispatch({
             type: 'ADD_BOOK', 
-            book: {
-                title: book.volumeInfo.title,
-                author: book.volumeInfo.authors.toString(),
-                image: book.volumeInfo.imageLinks.smallThumbnail,
-                info: book.volumeInfo.description
-            }
+            book
         });
         
     };
 };
-
 
 const persistBookFromSearchToDatabase = book => {
     fetch('/api/books', {
@@ -27,67 +21,26 @@ const persistBookFromSearchToDatabase = book => {
 		body: JSON.stringify({
 			book: {
                 title: book.volumeInfo.title,
-                author: book.volumeInfo.authors.toString(),
-                image: book.volumeInfo.imageLinks.smallThumbnail,
-                info: book.volumeInfo.description
+                author: book.volumeInfo.authors ? book.volumeInfo.authors.toString() : "No author",
+                image: book.volumeInfo.imageLinks.thumbnail,
+                info: book.volumeInfo.description ? book.volumeInfo.description : "No info available"
 			}
 		})
 	}).catch(error => console.log(error));
 };
 
-export const addBookFromNewReleases = book => {
-    persistBookFromNewReleasesToDatabase(book);
-    return dispatch => {
-        dispatch({
-            type: 'ADD_BOOK', 
-            book: {
-                title: book.volumeInfo.title,
-                author: book.volumeInfo.authors.toString(),
-                image: book.volumeInfo.imageLinks.smallThumbnail,
-                info: book.volumeInfo.description
-            }
-        });
-        
-    };
-};
-
-
-const persistBookFromNewReleasesToDatabase = book => {
-    fetch('/api/books', {
-		method: 'post',
-		headers: {
-			Accept: 'application/json',
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			book: {
-                title: book.volumeInfo.title,
-                author: book.volumeInfo.authors.toString(),
-                image: book.volumeInfo.imageLinks.smallThumbnail,
-                info: book.volumeInfo.description
-			}
-		})
-	}).catch(error => console.log(error));
-};
-
+//Creating a book to add to wishlist
 
 export const addBook = book => {
     persistBookToDatabase(book);
     return dispatch => {
         dispatch({
             type: 'ADD_BOOK', 
-            book: {
-                ID: book.id,
-                title: book.title,
-                author: book.author.toString(),
-                image: book.image,
-                info: book.info
-            }
+            book
         });
         
     };
 };
-
 
 const persistBookToDatabase = book => {
     fetch('/api/books', {
@@ -98,15 +51,15 @@ const persistBookToDatabase = book => {
 		},
 		body: JSON.stringify({
 			book: {
-                id: book.id,
 				title: book.title,
-				author: book.author.toString(),
-				image: book.image,
+				author: book.author,
 				info: book.info
 			}
 		})
 	}).catch(error => console.log(error));
 };
+
+//Deleting book from wishlist
 
 export const deleteBook = book => {
     console.log(book)
@@ -114,13 +67,7 @@ export const deleteBook = book => {
     return dispatch => {
         dispatch({
             type: 'DELETE_BOOK', 
-            book: {
-                id: book.id,
-                title: book.title,
-                author: book.author,
-                image: book.image,
-                info: book.info
-            }
+            book
         });
         
     };
@@ -136,6 +83,8 @@ const deleteBookInDatabase = book => {
 		body: book
 	}).catch(error => console.log(error));
 };
+
+//Get wishlist
 
 export function getMyWishList () {
     return ( dispatch ) => {

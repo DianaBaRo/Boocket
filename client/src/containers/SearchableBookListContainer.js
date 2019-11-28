@@ -29,21 +29,21 @@ class SearchableBookListContainer extends PureComponent {
            
             <span>
                 <p>
-                    <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} />
+               
+                    <img src={ book.volumeInfo.imageLinks === undefined ? '/download.jpeg' : book.volumeInfo.imageLinks.thumbnail } alt={book.volumeInfo.title} />
                     {/*Passing props with Link react-router to `/search/books/:id` that is connected to Book component*/}
                     <Link to={{
                         pathname: `/search/books/${book.volumeInfo.title}`,
-                        data: {
+                        state: {
                             title: book.volumeInfo.title,
-                            author: book.volumeInfo.authors.join(''),
-                            info: book.volumeInfo.infoLink,
-                            image: book.volumeInfo.imageLinks.thumbnail,
-                            description: book.volumeInfo.description
+                            image: book.volumeInfo.imageLinks,
+                            author: book.volumeInfo.authors,
+                            infoLink: book.volumeInfo.infoLink,
+                            info: book.volumeInfo.description
                         }
-
                     }} ><h3>{ book.volumeInfo.title }</h3></Link>
-                
-                    <button onClick={ () => this.handleAddBook(book) }>Add Book to Wishlist</button>
+
+                    <button onClick={ () => {this.handleAddBook(book)} } >Add to wishlist</button>
                 </p> 
             </span>
         ));
