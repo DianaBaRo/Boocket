@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 
     def index
         books = Book.all
-        render json: books.to_json
+        render json: books, each_serializer: BookSerializer
     end
 
     def new
@@ -21,17 +21,6 @@ class BooksController < ApplicationController
 
     def show
         render json: @book, status: 200
-    end
-
-    def edit
-    end
-
-    def update
-        if book.update(book_params)
-            render json: @book
-        else
-            render :edit
-        end
     end
 
     def destroy

@@ -42,3 +42,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Utility for managing multiple processes
 gem 'foreman'
+
+#To use my serializer
+gem 'active_model_serializers', '~> 0.10.10'
