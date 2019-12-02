@@ -16,6 +16,7 @@ WORKDIR /project
 #Foreman: rake start
 
 #Disconnect from container: ctrl + d
+#start container: docker start adoring_brattain
 #List my containers: docker ps
 #Get into my container: docker attach <name of the container>
 
