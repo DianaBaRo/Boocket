@@ -3,6 +3,8 @@
 App made for book lovers that want to keep track of the books they want to read.
 Users can search for books in the Google Book database and add them to their personal wishlist. Users can create a new book and add it to their personal list and delete it when wished aswell. All books are persisted in the Boocket database, so users will have always their list with them!
 
+[Link to my blog post] (http://carolinabadas.com/boocket/)
+
 ## Local development
 * Fork and clone this repo
 * To get into docker image run docker attach <name of the container>, in this case the name of the container is adoring_brattain. I have included some basic commands to use docker easily in the dockerfile. 
