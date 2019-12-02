@@ -1,8 +1,10 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 
 const NotFound = () => {
     return (
-        <h1>Page Not found</h1>
+        <Container className="error-container">
+        </Container>
     );
 };
 
