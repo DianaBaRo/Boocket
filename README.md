@@ -8,7 +8,7 @@ Users can search for books in the Google Book database and add them to their per
 
 ## Local development
 * Fork and clone this repo
-* To get into docker image run docker attach <name of the container>, in this case the name of the container is adoring_brattain. I have included some basic commands to use docker easily in the dockerfile. 
+* To get into docker image run docker attach adoring_brattain. I have included some basic commands to use docker easily in the dockerfile. 
 * Inside the docker container, run rake db:create && bundle install && rake db:migrate && rake db:seed
 * To start the servers: rake start. Then you can go to http://localhost:3000/ to check the front end app and to http://localhost:3001/api/books to check the end point of the API. A proxy is setup in client/package.json to proxy our API calls to the Rails server.
 
