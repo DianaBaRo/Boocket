@@ -19,6 +19,7 @@ const Home = () => (
                     <li>react-router-dom to draw the routes</li>
                     <li>Ruby on Rails to create the API and handle the data persistence. I used fetch withing my actions to GET and POST data from my API</li>
                     <li>Docker. I wrapped up the project as a docker image in the Dockerfile.</li>
+                    <li>Google Books API</li>
                 </ul>
             </p>
             <p>
