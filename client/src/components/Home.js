@@ -7,7 +7,7 @@ const Home = () => (
     <Container className="custom-container">
         <Col xs={6}>
             <h1>Welcome to Boocket </h1>
-            <p>Best app for book lovers that want to keep track of the books they want to read.</p>
+            <p>App made for book lovers that want to keep track of the books they want to read.</p>
             <p>
                 You can search for books in the Google Book database and add them to your personal wishlist. If you can find anything you like you can create a new book and add it to your personal list and delete it when wished. All books are persisted in the Boocket database, so you will have always your list with you! </p>
             <p>
