@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
-import '../css/BookListContainer.css';
+import '../css/index.css';
 import { connect } from 'react-redux';
 import { deleteBook } from '../actions/wishList';
 import { getMyWishList } from '../actions/wishList';
 import { Link } from 'react-router-dom';
-
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import CardColumns from 'react-bootstrap/CardColumns';
 
 class WishListContainer extends PureComponent {
 
@@ -21,24 +23,21 @@ class WishListContainer extends PureComponent {
         const books = this.props.books.length > 0 ? 
         this.props.books.map( book => (
 
-            <div>
-                <span>
-                    <img
-                        src={ book.image === "" || book.image === null ? '/download.jpeg' : book.image }
-                        alt={ book.title }
-                    />
-                    {/*Passing props with Link react-router to `/wishlist/books/:id` that is connected to Book component*/}
-                    <Link to={{
-                        pathname: `/wishlist/books/${book.title}`,
-                        state: book
-                    }} ><h3>{ book.title }</h3></Link>
-                    <p>by { book.author }</p>
-                    
-                    <p> <button onClick={ () =>  this.handleDeleteBook( book.id )}>Click here to delete from list</button></p>
-                    
-                </span>
-            
-            </div>
+                <Card>
+                    <Card.Img variant="top" src={ book.image === "" || book.image === null ? '/download.jpeg' : book.image } alt={ book.title } />
+                    <Card.Body>
+                        <Card.Text>
+                            <button type="button" class="close" aria-label="Close" onClick={ () =>  this.handleDeleteBook( book.id )}><span aria-hidden="true">&times;</span></button>
+                            {/*Passing props with Link react-router to `/wishlist/books/:id` that is connected to Book component*/}
+                            <Link to={{
+                                pathname: `/wishlist/books/${book.title}`,
+                                state: book
+                            }} ><h3>{ book.title }</h3></Link>
+                            <p>by { book.author }</p>
+                        </Card.Text>
+                    </Card.Body>
+
+                </Card>
         ))
         : null
         return books
@@ -47,10 +46,12 @@ class WishListContainer extends PureComponent {
     
     render () {
         return (
-            <div className="BookListContainer">
+            <Container className="custom-container">
                 <h1>My wishlist</h1>
-                 {this.handleLoading()}
-            </div>
+                <CardColumns>
+                        {this.handleLoading()}
+                </CardColumns>
+            </Container>
         );
     };
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './NavBar';
+import Footer from './Footer';
 import SearchableBookListContainer from '../containers/SearchableBookListContainer';
 import Home from './Home';
 import NotFound from './NotFound';
@@ -22,6 +23,7 @@ const App = () => {
                     <Route exact path='/' component={ Home } />
                     <Route component={ NotFound } />
                 </Switch>
+                <Footer />
             </>
         </Router>
     );

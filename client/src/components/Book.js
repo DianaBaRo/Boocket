@@ -1,5 +1,7 @@
 import React from 'react';
-import '../css/Book.css';
+import '../css/index.css';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 
 const Book = (props) => {
     //Get its props from Link react-router, setted in SearchableBookListContainer and in WishListContainer
@@ -9,22 +11,27 @@ const Book = (props) => {
 
     if (book) {
         return(
-            <div className="BookListContainer">
-                <h1>{ book.title === undefined || book.title === "" ? 'No title available' : book.title }</h1>
-                <img
-                    src={ book.image === "" || book.image === null ? '/download.jpeg' : book.image.thumbnail ?  book.image.thumbnail : book.image }
-                    alt={ book.title === undefined || book.title === "" ? 'Book image' : book.title }
-                />
-                <p>by { book.author === undefined || book.author === "" ? 'No author available' : book.author.concat(' ') }</p>
-                {/* Condition. if book.info contains http display link otherwise plain text*/}
-                { book.infoLink === undefined || book.infoLink === "" ? '' : <p><a href={ book.infoLink } >More info</a></p> }
-                <p>{ book.info === undefined || book.info === "" ? '' : book.info }</p>
-            </div>
+            <Container className="custom-container">
+                <Col xs={6}>
+                    <img
+                        src={ book.image === "" || book.image === null ? '/download.jpeg' : book.image.thumbnail ?  book.image.thumbnail : book.image }
+                        alt={ book.title === undefined || book.title === "" ? 'Book image' : book.title }
+                    />
+                    <h1>{ book.title === undefined || book.title === "" ? 'No title available' : book.title }</h1>
+                    
+                    <p>by <h4>{ book.author === undefined || book.author === "" ? 'No author available' : book.author.concat(' ') } </h4> </p>
+                    {/* Condition. if book.info contains http display link otherwise plain text*/}
+                    { book.infoLink === undefined || book.infoLink === "" ? '' : <p><a href={ book.infoLink } >More info</a></p> }
+                    <p>{ book.info === undefined || book.info === "" ? '' : book.info }</p>
+                </Col>
+            </Container>
         )
     } else {
 
-        return <h1>URL not valid</h1>
-
+        return (
+            <Container className="error-container">
+            </Container>
+        )
     };
 };
 
