@@ -21,9 +21,9 @@ const persistBookFromSearchToDatabase = book => {
 		body: JSON.stringify({
 			book: {
                 title: book.volumeInfo.title,
-                author: book.volumeInfo.authors ? book.volumeInfo.authors.toString() : "No author",
+                author: book.volumeInfo.authors ? book.volumeInfo.authors.toString() : "No author available",
                 image: book.volumeInfo.imageLinks.thumbnail,
-                info: book.volumeInfo.description ? book.volumeInfo.description : "No info available"
+                info: book.volumeInfo.description ? book.volumeInfo.description : "No more info available"
 			}
 		})
 	}).catch(error => console.log(error));
