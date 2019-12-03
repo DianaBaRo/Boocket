@@ -12,7 +12,6 @@ class CreateBook extends PureComponent {
     state = {
         title: '',
         author: '',
-        image: '',
         info: ''
     };
 
@@ -25,8 +24,8 @@ class CreateBook extends PureComponent {
 
     handleSubmit = event => {
         event.preventDefault();
-        //update the Redux store's state when the user hits the submit button
         this.props.addBook(this.state);
+        //update the Redux store's state when the user hits the submit button
         this.setState({
             title: '',
             author: '',
@@ -42,7 +41,7 @@ class CreateBook extends PureComponent {
                 <Col xs={6}>
                     <h1>Create a book</h1>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Group controlId="formBasicEmail">
+                        <Form.Group>
 
                             <Form.Label><h6>Title</h6></Form.Label>
                             <Form.Control 
