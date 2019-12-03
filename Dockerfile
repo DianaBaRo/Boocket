@@ -10,16 +10,25 @@ WORKDIR /project
 #RUN create-react-app client
 #RUN rails new . --api
 
-#Start rails server: rails server -p 3001 -b 0.0.0.0
-#Start react server: cd client & npm start
-#Run: docker run -v `pwd`:/project -it -p 3001:3001 -p 3000:3000 bookshelf bashdocker
-#Foreman: rake start
+#Docker basic commands:
 
-#Disconnect from container: ctrl + d
-#start container: docker start adoring_brattain
-#List my containers: docker ps
-#Get into my container: docker attach <name of the container>
+#Create a container and start the container. Docker run is a combination of docker create and docker start: docker run -v `pwd`:/project -it -p 3001:3001 -p 3000:3000 bookshelf bash
 
 #Build: docker build -t bookshelf . //Every time I change my dockerfile.
+
+#Come out of the container: exit
+#Disconnect from container: ctrl + d
+#start container: docker start <name of the container>
+#List my containers: docker ps -a
+#Get into my container: docker attach <name of the container>
+
+#Start servers:
+
+#Start rails server: rails server -p 3001 -b 0.0.0.0
+#Start react server: cd client & npm start
+
+#Start both serves with Foreman. Done with a rake task: rake start
+
+
 
 
