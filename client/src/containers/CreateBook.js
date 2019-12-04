@@ -15,7 +15,7 @@ class CreateBook extends PureComponent {
         info: ''
     };
 
-    //instead of writing handleChange() as a class method, I declare it as a class property and assign an arrow function to it.
+    // handleChange() is an instance property with an assigned arrow function to it. 
     handleChange = event => {
         this.setState({
             [event.target.name]: event.target.value
@@ -89,7 +89,9 @@ class CreateBook extends PureComponent {
 };
 
 const mapDispatchToProps = dispatch => {
-    return { addBook: book => dispatch(addBook(book)) }
+    return { 
+        addBook: book => dispatch(addBook(book)) 
+    }
 };
 
 export default connect(null, mapDispatchToProps)(CreateBook);

@@ -63,7 +63,7 @@ class SearchableBookListContainer extends PureComponent {
             <Container className="custom-container">
                 <Col xs={6}>
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Group controlId="formBasicEmail">
+                        <Form.Group>
                             <Form.Label><h1>Search</h1></Form.Label>
                             <Form.Control 
                                 id='query' 
@@ -96,17 +96,17 @@ class SearchableBookListContainer extends PureComponent {
 
 };
 
-function mapDispatchToProps(dispatch) {
+const mapStateToProps = state => {
+    return { 
+        books: state.searchBookList
+     }
+};
+
+const mapDispatchToProps = dispatch => {
     return { 
         fetchSearchBookList: (query) => dispatch(fetchSearchBookList(query)),
         addBook: book => dispatch(addBookFromSearch(book))
     }
-};
-
-function mapStateToProps(state) {
-    return { 
-        books: state.searchBookList
-     }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (SearchableBookListContainer);

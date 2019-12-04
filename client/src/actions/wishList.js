@@ -1,5 +1,6 @@
 //Adding a book to wishlist selected from search list
 
+//This function is an action creator
 export const addBookFromSearch = book => {
     persistBookFromSearchToDatabase(book);
     return dispatch => {
