@@ -87,7 +87,7 @@ const deleteBookInDatabase = book => {
 
 //Get wishlist
 
-export function getMyWishList () {
+export const getMyWishList = () => {
     return ( dispatch ) => {
         fetch("/api/books", {
             method: 'GET',

@@ -1,4 +1,4 @@
-export function fetchSearchBookList (query) {
+export const fetchSearchBookList = (query) => {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&orderBy=newest&maxResults=40`
     return ( dispatch ) => {
         fetch(url, {
