@@ -32,8 +32,8 @@ const persistBookFromSearchToDatabase = book => {
 
 //Creating a book to add to wishlist
 
-export const addBook = book => {
-    persistBookToDatabase(book);
+export const addBook = book => { // refactor to an async action w/ persistBookToDatabase
+    persistBookToDatabase(book)
     return dispatch => {
         dispatch({
             type: 'ADD_BOOK', 
@@ -44,6 +44,7 @@ export const addBook = book => {
 };
 
 const persistBookToDatabase = book => {
+    console.log('C')
     fetch('/api/books', {
 		method: 'post',
 		headers: {
@@ -56,8 +57,12 @@ const persistBookToDatabase = book => {
 				author: book.author,
 				info: book.info
 			}
-		})
-	}).catch(error => console.log(error));
+        })
+
+    }).then((res) => {
+        console.log('D')
+    }).catch(error => console.log(error));
+    console.log('E')
 };
 
 //Deleting book from wishlist
@@ -85,6 +90,30 @@ const deleteBookInDatabase = book => {
 	}).catch(error => console.log(error));
 };
 
+//Add like
+export const addLike = (book) => {
+    persistLike(book);
+    return ( dispatch ) => {
+        dispatch({ 
+            type: 'ADD_LIKE', 
+            book
+        });
+    };
+};
+    
+const persistLike = (book) => {
+    fetch('/api/books/' + book.id, {
+        method: 'put',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            book: book  
+        })
+    }).catch( err => console.log(err))
+};
+
 //Get wishlist
 
 export const getMyWishList = () => {
@@ -97,7 +126,7 @@ export const getMyWishList = () => {
             }
         })
         .then( response => {
-            if ( !response.ok ) { throw response }
+            if ( !response.ok ) { throw response } //throws an user-defined exception
             return response.json()  //we only get here if there is no error
         })
         .then( books => {
