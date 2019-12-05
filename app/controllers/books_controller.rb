@@ -20,7 +20,12 @@ class BooksController < ApplicationController
     end
 
     def show
-        render json: @book, status: 200
+        render json: @book
+    end
+
+    def update
+        @book.likes += 1
+        @book.save
     end
 
     def destroy
@@ -29,7 +34,7 @@ class BooksController < ApplicationController
 
     private
     def book_params
-        params.require(:book).permit(:title, :author, :info, :image)
+        params.require(:book).permit(:title, :author, :info, :image, :likes)
     end
 
     def set_book
