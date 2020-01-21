@@ -40,7 +40,7 @@ There are some basic commands to use docker easily in the dockerfile.
 * Redux to keep the state of the app in the same store
 * react-bootstrap framework and CSS for styling
 * react-router-dom to draw the routes
-* Ruby on Rails to create the API and handle the data persistence. I used fetch withing my actions to GET and POST data from my API
+* Ruby on Rails to create the API and handle the data persistence. I used fetch within my actions to GET and POST data from my API
 * Docker
 * Google Books API
 
